@@ -135,7 +135,9 @@ dmypy.json
 .idea/
 
 # resource
+run.log
 images/
 credentials.json
+credentials-temp.json
 
 **/.DS_Store
