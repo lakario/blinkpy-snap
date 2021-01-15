@@ -11,7 +11,7 @@ def get_camera_image(camera_name, image_path='images'):
 
     print('Snap picture from \'' + camera_name + '\'...')
     camera.snap_picture()
-    time.sleep(4)
+    time.sleep(5)
 
     blink_session.refresh(force=True)
 
@@ -48,4 +48,4 @@ def setup_logger():
 
 if __name__ == '__main__':
     setup_logger()
-    get_camera_image('Tent', '../images/tent')
+    get_camera_image('Tent', 'images/tent')
