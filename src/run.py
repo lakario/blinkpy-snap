@@ -1,5 +1,6 @@
 import time
 import os.path
+import sys
 from session import BlinkSession
 
 
@@ -46,6 +47,8 @@ def setup_logger():
                         filename='../run.log')
 
 
-if __name__ == '__main__':
+if __name__ == '__main__' and len(sys.argv) == 2:
+    target_camera = sys.argv[1]
+
     setup_logger()
-    get_camera_image('Tent', 'images/tent')
+    get_camera_image(target_camera, 'images/' + str.lower(target_camera))
