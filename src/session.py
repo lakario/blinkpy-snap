@@ -4,7 +4,7 @@ from blinkpy.blinkpy import Blink
 from blinkpy.helpers.util import json_load
 import time
 
-AUTH_FILE = "../credentials.json"
+AUTH_FILE = "credentials.json"
 
 
 class BlinkSession:

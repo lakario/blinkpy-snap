@@ -1,6 +1,6 @@
 import time
 import os.path
-from src.session import BlinkSession
+from session import BlinkSession
 
 
 def get_camera_image(camera_name, image_path='images'):
