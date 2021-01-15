@@ -1,6 +1,6 @@
 import time
 import os.path
-from session import BlinkSession
+from src.session import BlinkSession
 
 
 def get_camera_image(camera_name, image_path='images'):
@@ -43,9 +43,9 @@ def setup_logger():
     logging.basicConfig(level=logging.DEBUG,
                         format='%(levelname)-8s [%(asctime)s] [%(name)s] %(message)s',
                         datefmt='%m-%d %H:%M',
-                        filename='run.log')
+                        filename='../run.log')
 
 
 if __name__ == '__main__':
     setup_logger()
-    get_camera_image('Tent', 'images/tent')
+    get_camera_image('Tent', '../images/tent')
