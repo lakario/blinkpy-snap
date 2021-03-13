@@ -35,7 +35,12 @@ def get_camera_image(camera_name, image_path='images'):
             os.mkdir(image_path)
 
         camera.image_to_file(image_name)
-        print('Image saved to: ' + image_name)
+
+        if os.path.exists(image_name):
+            print('Image saved to: ' + os.path.abspath(image_name))
+        else:
+            print('ERROR: Something went wrong. Image was not found at expected path.')
+            exit(1)
 
 
 def setup_logger():
@@ -44,7 +49,7 @@ def setup_logger():
     logging.basicConfig(level=logging.DEBUG,
                         format='%(levelname)-8s [%(asctime)s] [%(name)s] %(message)s',
                         datefmt='%m-%d %H:%M',
-                        filename='../run.log')
+                        filename='run.log')
 
 
 if __name__ == '__main__' and len(sys.argv) == 2:

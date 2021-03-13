@@ -136,8 +136,8 @@ dmypy.json
 
 # resource
 run.log
-images/
 credentials.json
 credentials-temp.json
+images/
 
 **/.DS_Store
