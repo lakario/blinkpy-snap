@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  blinkpy-snap:
+    image: lakario/blinkpy-snap
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      Snap_Camera: "${CAMERA}"
+      Snap_OutputPath: "/images/${CAMERA}"
+      Snap_AuthPath: "/.blinkpy/credentials.json"
+    volumes:
+      - ./.blinkpy:/.blinkpy:ro
+      - ./images:/images:rw

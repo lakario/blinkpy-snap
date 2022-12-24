@@ -139,5 +139,6 @@ run.log
 credentials.json
 credentials-temp.json
 images/
+.blinkpy/
 
 **/.DS_Store

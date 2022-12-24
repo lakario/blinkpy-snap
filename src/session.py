@@ -4,15 +4,15 @@ from blinkpy.blinkpy import Blink
 from blinkpy.helpers.util import json_load
 import time
 
-AUTH_FILE = "credentials.json"
-
 
 class BlinkSession:
+    DEFAULT_AUTH_FILE = ".blinkpy/credentials.json"
 
     def __init__(
-            self
+            self,
+            auth_file: str = DEFAULT_AUTH_FILE
     ):
-        self.auth_file = AUTH_FILE
+        self.auth_file = auth_file
         self.blink = Blink()
 
     def _auth_file_exists(self):
@@ -29,20 +29,28 @@ class BlinkSession:
             self.blink.auth = Auth()
 
         self.blink.start()
-
-        # write auth file
-        self.blink.save(self.auth_file)
-        print('Auth file updated: ' + self.auth_file)
+        self._write_credentials()
 
         if with_sleep:
             time.sleep(3)
 
         return self.get(force_reset=False)
 
-    def get(self, force_reset=False):
+    def _write_credentials(self):
+        # write auth file
+        if not os.path.exists(os.path.dirname(self.auth_file)):
+            os.makedirs(os.path.dirname(self.auth_file), exist_ok=True)
+        self.blink.save(self.auth_file)
+        print('Auth file updated: ' + self.auth_file)
+
+    def get(self, force_reset=False, no_prompt=False):
         if force_reset or not self._auth_file_exists():
+            print(f'Credentials not found. Searched: {self.auth_file}')
+            if no_prompt:
+                raise Exception("Credentials required. Unable to continue.")
             self.blink = self._refresh_auth(reset=True)
         else:
+            print(f'Credentials located: {self.auth_file}')
             self.blink.auth = Auth(login_data=json_load(self.auth_file), no_prompt=True)
             self.blink.start()
 
