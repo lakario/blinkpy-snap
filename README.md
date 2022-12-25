@@ -12,11 +12,11 @@ are not found, the script can request them
     - `-c, --Camera`: Specifies the camera to activate
     - `-o, --Output`: Specifies the output path for captured images
     - `-a, --Auth`: Specifies the path to the credentials file (`credentials.json`)
-    - `-q, --Quiet`: Enables quiet mode. Disables authentication prompts.
+    - `-q, --Quiet`: Enables quiet mode. Disables authentication prompts
   - Environment Variables
     - `Snap_Camera`: Maps to `-c`
     - `Snap_OutputPath`: Maps to `-o`
-    - `Snap_AuthFile`: Maps to `-a`
+    - `Snap_AuthPath`: Maps to `-a`
 - `session.py` is a wrapper around the initialization of a blinkpy `Blink` object 
 which is consumed by `run.py`. This script may be run directly to reset your login credentials
 - `Dockerfile` Executes `run.py` in quiet mode. Tip: Use environment variables for configuration
